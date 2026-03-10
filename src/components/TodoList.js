@@ -1,7 +1,6 @@
-import React from 'react';
+import React from "react";
 
-// Props mein todos aur handleComplete function receive kiye
-function TodoList({ todos, handleComplete }) {
+const TodoList = ({ todos, handleComplete }) => {
   return (
     <div>
       <h2>Child Component</h2>
@@ -10,6 +9,7 @@ function TodoList({ todos, handleComplete }) {
           <li key={todoItem.id}>
             {todoItem.text}
             
+            {/* Conditional Rendering: Agar completed false hai tabhi button dikhega */}
             {todoItem.completed === false && (
               <button 
                 className="complete-button" 
@@ -23,6 +23,6 @@ function TodoList({ todos, handleComplete }) {
       </ul>
     </div>
   );
-}
+};
 
 export default TodoList;
