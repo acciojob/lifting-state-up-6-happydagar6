@@ -9,28 +9,27 @@ const App = () => {
     { id: 3, text: "Build a Project", completed: false }
   ]);
 
-  // 2. State update karne wala function
-  const handleComplete = (id) => {
-    // Puraane todos par map chalaya. Agar id match hui, toh uska 'completed' true kar diya
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, completed: true };
+  // Yeh function Child se call hoga
+  const handleComplete = (targetId) => {
+    // Array ko map karke sirf us task ko update karenge jiski ID match hogi
+    const updatedTodos = todos.map((todoItem) => {
+      if (todoItem.id === targetId) {
+        return { ...todoItem, isCompleted: true };
       }
-      return todo;
+      return todoItem;
     });
     
-    // Nayi list ko state mein set kar diya
+    // Naya data set kar diya, jisse React component ko wapas render karega
     setTodos(updatedTodos);
   };
 
   return (
-    <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
-      <h2>My Todo List (Parent Component)</h2>
-      
-      {/* 3. Child ko data (todos) aur function (handleComplete) dono pass kar diye */}
+    <div>
+      <h1>Parent Component</h1>
+      {/* Child ko data (todos) aur function (handleComplete) dono as a prop pass kar diye */}
       <TodoList todos={todos} handleComplete={handleComplete} />
     </div>
   );
-};
+}
 
 export default App;
