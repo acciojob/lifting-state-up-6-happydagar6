@@ -14,7 +14,7 @@ const App = () => {
     // Array ko map karke sirf us task ko update karenge jiski ID match hogi
     const updatedTodos = todos.map((todoItem) => {
       if (todoItem.id === targetId) {
-        return { ...todoItem, isCompleted: true };
+        return { ...todoItem, completed: true };
       }
       return todoItem;
     });

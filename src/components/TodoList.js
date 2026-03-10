@@ -10,7 +10,7 @@ function TodoList({ todos, handleComplete }) {
           <li key={todoItem.id}>
             {todoItem.text}
             
-            {todoItem.isCompleted === false && (
+            {todoItem.completed === false && (
               <button 
                 className="complete-button" 
                 onClick={() => handleComplete(todoItem.id)}
