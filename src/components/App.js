@@ -4,18 +4,16 @@ import TodoList from './TodoList';
 const App = () => {
   // Initialize the state with an array of todo items
   const [todos, setTodos] = useState([
-    { id: 1, text: 'Learn React', completed: false },
-    { id: 2, text: 'Build a React app', completed: false },
-    { id: 3, text: 'Deploy the React app', completed: false }
+    { text: 'Learn React', isCompleted: false },
+    { text: 'Build a React app', isCompleted: false },
+    { text: 'Deploy the React app', isCompleted: false }
   ]);
 
-  // Function to mark a specific todo as completed
-  const handleComplete = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: true } : todo
-      )
-    );
+  // Function to mark a specific todo as completed using its INDEX
+  const handleComplete = (index) => {
+    const updatedTodos = [...todos];
+    updatedTodos[index].isCompleted = true; // Mark as true
+    setTodos(updatedTodos);
   };
 
   return (

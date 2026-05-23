@@ -5,12 +5,12 @@ const TodoList = ({ todos, handleComplete }) => {
     <div>
       <h2>Child Component</h2>
       <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
+        {todos.map((todo, index) => (
+          <li key={index}>
             {todo.text}{' '}
-            {/* Conditionally render the button based on completion state */}
-            {!todo.completed && (
-              <button onClick={() => handleComplete(todo.id)}>Complete</button>
+            {/* Renders button only if the item is NOT completed */}
+            {(!todo.isCompleted && !todo.completed) && (
+              <button onClick={() => handleComplete(index)}>Complete</button>
             )}
           </li>
         ))}
