@@ -4,22 +4,23 @@ import TodoList from './TodoList';
 const App = () => {
   // Initialize the state with an array of todo items
   const [todos, setTodos] = useState([
-    { text: 'Learn React', isCompleted: false },
-    { text: 'Build a React app', isCompleted: false },
-    { text: 'Deploy the React app', isCompleted: false }
+    { text: 'Learn React', completed: false },
+    { text: 'Build a React app', completed: false },
+    { text: 'Deploy the React app', completed: false }
   ]);
 
-  // Function to mark a specific todo as completed using its INDEX
+  // Update the completion state using the item's index
   const handleComplete = (index) => {
-    const updatedTodos = [...todos];
-    updatedTodos[index].isCompleted = true; // Mark as true
-    setTodos(updatedTodos);
+    setTodos(
+      todos.map((todo, i) =>
+        i === index ? { ...todo, completed: true } : todo
+      )
+    );
   };
 
   return (
     <div>
       <h1>Parent Component</h1>
-      {/* Pass the state and the update function as props to the child */}
       <TodoList todos={todos} handleComplete={handleComplete} />
     </div>
   );

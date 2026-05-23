@@ -8,8 +8,8 @@ const TodoList = ({ todos, handleComplete }) => {
         {todos.map((todo, index) => (
           <li key={index}>
             {todo.text}{' '}
-            {/* Renders button only if the item is NOT completed */}
-            {(!todo.isCompleted && !todo.completed) && (
+            {/* The button will instantly disappear when completed becomes true */}
+            {!todo.completed && (
               <button onClick={() => handleComplete(index)}>Complete</button>
             )}
           </li>
