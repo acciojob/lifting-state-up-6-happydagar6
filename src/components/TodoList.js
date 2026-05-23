@@ -5,29 +5,18 @@ const TodoList = ({ todos, handleComplete }) => {
     <div>
       <h2>Child Component</h2>
       <ul>
-        {todos.map((todo, index) => {
-          // Defensively check both common completion flags to satisfy the test runner
-          const isDone = todo.completed === true || todo.isCompleted === true;
-
-          return (
-            <li key={todo.id || index}>
-              {todo.text}{' '}
-              
-              {/* Only render if the item is definitively not done */}
-              {!isDone && (
-                <button 
-                  onClick={() => {
-                    // Pass the ID if it exists, otherwise pass the index
-                    const identifier = todo.id !== undefined ? todo.id : index;
-                    handleComplete(identifier);
-                  }}
-                >
-                  Complete
-                </button>
-              )}
-            </li>
-          );
-        })}
+        {todos.map((todo, index) => (
+          <li key={index}>
+            {todo.text}{' '}
+            
+            {/* The button strictly renders only if completed is false */}
+            {!todo.completed && (
+              <button onClick={() => handleComplete(index)}>
+                Complete
+              </button>
+            )}
+          </li>
+        ))}
       </ul>
     </div>
   );

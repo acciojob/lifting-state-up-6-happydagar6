@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import TodoList from './TodoList';
 
 const App = () => {
-  // Initialize the state with unique IDs
+  // Initialize the state
   const [todos, setTodos] = useState([
-    { id: 1, text: 'Learn React', completed: false },
-    { id: 2, text: 'Build a React app', completed: false },
-    { id: 3, text: 'Deploy the React app', completed: false }
+    { text: 'Learn React', completed: false },
+    { text: 'Build a React app', completed: false },
+    { text: 'Deploy the React app', completed: false }
   ]);
 
-  // Safely update the exact item using its unique ID
-  const handleComplete = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: true } : todo
+  const handleComplete = (index) => {
+    // We use the functional update pattern (prevTodos) so that rapid 
+    // automated clicks don't result in stale closures overwriting each other.
+    setTodos((prevTodos) => 
+      prevTodos.map((todo, i) => 
+        i === index ? { ...todo, completed: true } : todo
       )
     );
   };
