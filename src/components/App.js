@@ -16,6 +16,13 @@ const handleComplete = (id) => {
     )
   );
 };
+
+  return (
+    <div>
+      <h1>Parent Component</h1>
+      <TodoList todos={todos} handleComplete={handleComplete} />
+    </div>
+  );
 };
 
 export default App;
