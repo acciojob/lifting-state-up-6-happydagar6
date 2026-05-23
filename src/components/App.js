@@ -1,31 +1,27 @@
-import React, { useState } from "react";
-import TodoList from "./TodoList";
+import React, { useState } from 'react';
+import TodoList from './TodoList';
 
 const App = () => {
-  // Initial State: Har task ke andar 'completed: false' hai
+  // Initialize the state with an array of todo items
   const [todos, setTodos] = useState([
-    { id: 1, text: "Learn React Fundamentals", completed: false },
-    { id: 2, text: "Practice Lifting State Up", completed: false },
-    { id: 3, text: "Build a Project", completed: false }
+    { id: 1, text: 'Learn React', completed: false },
+    { id: 2, text: 'Build a React app', completed: false },
+    { id: 3, text: 'Deploy the React app', completed: false }
   ]);
 
-  const handleComplete = (targetId) => {
-    // Array ko update karna
-    const updatedTodos = todos.map((todoItem) => {
-      // Agar button ki ID aur task ki ID match karti hai
-      if (todoItem.id === targetId) {
-        // Toh state ko completed: true kar do
-        return { ...todoItem, completed: true }; 
-      }
-      return todoItem;
-    });
-    
-    setTodos(updatedTodos);
+  // Function to mark a specific todo as completed
+  const handleComplete = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: true } : todo
+      )
+    );
   };
 
   return (
     <div>
       <h1>Parent Component</h1>
+      {/* Pass the state and the update function as props to the child */}
       <TodoList todos={todos} handleComplete={handleComplete} />
     </div>
   );
