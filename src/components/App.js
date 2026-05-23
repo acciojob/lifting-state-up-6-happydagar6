@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import TodoList from './TodoList';
 
 const App = () => {
-  // Initialize the state with an array of todo items
+  // Initialize the state with unique IDs
   const [todos, setTodos] = useState([
-    { text: 'Learn React', completed: false },
-    { text: 'Build a React app', completed: false },
-    { text: 'Deploy the React app', completed: false }
+    { id: 1, text: 'Learn React', completed: false },
+    { id: 2, text: 'Build a React app', completed: false },
+    { id: 3, text: 'Deploy the React app', completed: false }
   ]);
 
-  // Update the completion state using the item's index
-  const handleComplete = (index) => {
+  // Safely update the exact item using its unique ID
+  const handleComplete = (id) => {
     setTodos(
-      todos.map((todo, i) =>
-        i === index ? { ...todo, completed: true } : todo
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: true } : todo
       )
     );
   };
